@@ -21,15 +21,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Display build information
-        run: |
-          echo "Building DevOps project..."
-          python --version
+      - name: Build application
+        run: python -m py_compile calculator.py
 
-      - name: Run automated tests
-        run: |
-          python -c "print('Build successful!')"
-          echo "Automated tests passed!"
+      - name: Run automated unit tests
+        run: python -m unittest -v test_calculator.py
 
       - name: Deployment stage
         run: echo "Deployment stage completed successfully!"
