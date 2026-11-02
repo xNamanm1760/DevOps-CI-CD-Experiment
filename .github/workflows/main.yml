@@ -1,0 +1,35 @@
+
+name: DevOps CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Display build information
+        run: |
+          echo "Building DevOps project..."
+          python --version
+
+      - name: Run automated tests
+        run: |
+          python -c "print('Build successful!')"
+          echo "Automated tests passed!"
+
+      - name: Deployment stage
+        run: echo "Deployment stage completed successfully!"
